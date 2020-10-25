@@ -16,6 +16,10 @@ app.get('/', (reqeust, response) => {
 // Init middleware
 // app.use(logger);
 
+// Body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
