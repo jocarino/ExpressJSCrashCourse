@@ -4,6 +4,8 @@ const { request } = require('http');
 const path = require('path');
 const { send } = require('process');
 
+const exphbs = require('express-handlebars');
+
 const logger = require('./middleware/logger');
 
 const app = express();
@@ -16,12 +18,21 @@ app.get('/', (reqeust, response) => {
 // Init middleware
 // app.use(logger);
 
+// Handlebars middleware
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
+
 // Body parser middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+// Homepage Route
+app.get('/', (request, response) => response.render('index', {
+    title: 'Member App'
+}));
+
+/* // Set static folder
+app.use(express.static(path.join(__dirname, 'public'))); */
 
 // Members API Routes
 app.use('/api/members', require('./routes/api/members'));
