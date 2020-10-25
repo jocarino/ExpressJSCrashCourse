@@ -8,6 +8,8 @@ const exphbs = require('express-handlebars');
 
 const logger = require('./middleware/logger');
 
+const members = require('./Members');
+
 const app = express();
 
 /* // Get request
@@ -28,7 +30,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // Homepage Route
 app.get('/', (request, response) => response.render('index', {
-    title: 'Member App'
+    title: 'Member App',
+    members
 }));
 
 /* // Set static folder

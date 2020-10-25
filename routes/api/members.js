@@ -36,7 +36,8 @@ router.post('/', (request, response) => {
     // Pushing new member to array
     members.push(newMember);
 
-    response.json(members);
+    // response.json(members);
+    response.redirect('/');
 });
 
 // Update member
